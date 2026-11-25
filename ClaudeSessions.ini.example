@@ -1,0 +1,19 @@
+; ClaudeSessions.ini - put it next to the plugin DLL (each of the .wlx64 / .wfx64 / .wdx64 folders reads its own).
+; Everything is optional; defaults are shown.
+
+[view]                       ; Lister
+; Language=auto             ; auto (follows Total Commander), uk, ru, en
+; Theme=auto                ; auto (follows Total Commander), light, dark
+; Results=1                 ; tool results: 0 hide, 1 short, 2 full   (key R in the viewer)
+; Thinking=0                ; 1 = show the model's thinking          (key T)
+; FontSize=10
+
+[fs]                         ; file system (virtual folder of sessions)
+; Path=D:\Programs\Claude\data\projects   ; default: found from CLAUDE_CONFIG_DIR, <Programs>\Claude, %USERPROFILE%\.claude
+; Enter=resume              ; resume = claude --resume in a new terminal in the project folder; copy = let TC copy/open the file
+; Terminal=wt               ; wt (Windows Terminal, else cmd) or cmd
+; Claude=                   ; path of the launcher; default: <claude folder>\claude.cmd next to "data", else "claude" from PATH
+; ResumeCommand=            ; full custom command, placeholders {cwd} {id} {claude}, e.g.
+;                           ; wt.exe -d "{cwd}" pwsh -NoExit -Command & '{claude}' --resume {id}
+; ExportMd=0                ; 1 = F5 copies a session as .md instead of .jsonl
+; MdResults=1               ; tool results in the .md: 0 none, 1 short, 2 longer
