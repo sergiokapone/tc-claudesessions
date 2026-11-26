@@ -95,7 +95,7 @@ F3 on any `*.jsonl` shows the conversation in its own terminal-style window:
 Title, Started, LastActive, Messages (prompts), Project, Model, Id, Tokens, OutputTokens, CacheReadTokens for `*.jsonl` files in ordinary folders too (search, sort, columns, tooltips). The field names follow the language of Total Commander (English, Russian, Ukrainian).
 
 ### Install
-Download one of the installers (`ClaudeSessions-WFX/WLX/WDX-1.5.zip`), open it in Total Commander (Enter) and confirm, or take `ClaudeSessions-1.4.zip` with everything and register the files by hand. Lister detect string: `EXT="JSONL" | ([0]=239 & [1]=187 & [2]=191)` (the UTF-8 BOM part is for the texts of the file system: overviews, version, trash, limits; the plugin takes only its own, so Quick View moving on to a session stays in this plugin). Settings: `ClaudeSessions.ini` next to the DLL (see `ClaudeSessions.ini.example`).
+Download one of the installers (`ClaudeSessions-WFX/WLX/WDX-1.5.zip`), open it in Total Commander (Enter) and confirm, or take `ClaudeSessions-1.5.zip` with everything and register the files by hand. Lister detect string: `EXT="JSONL" | ([0]=239 & [1]=187 & [2]=191)` (the UTF-8 BOM part is for the texts of the file system: overviews, version, trash, limits; the plugin takes only its own, so Quick View moving on to a session stays in this plugin). Settings: `ClaudeSessions.ini` next to the DLL (see `ClaudeSessions.ini.example`).
 
 ### Notes
 - Sessions can contain private data (paths, command output, file contents); a Markdown export contains it too. Share exports with care.
