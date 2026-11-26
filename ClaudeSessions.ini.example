@@ -19,3 +19,7 @@
 ; MdResults=1               ; tool results in the .md: 0 none, 1 short, 2 longer
 ; Trash=                    ; where F8 moves sessions (default: sessions-trash next to projects)
 ; Limits=1                  ; 0 = do not show the 5-hour and weekly limits in the root (read with the Claude Code login, like /usage)
+; Version=1                 ; 0 = do not show the installed Claude Code version in the root
+; UpdateCheck=1             ; 0 = do not ask the npm registry for a newer version (every 6 hours, no login, no data sent)
+; UpdateCommand=            ; Enter on a newer version runs this ({claude} {version} {channel}); default: update.cmd next to the claude launcher, else "claude update"
+; Settings=1                ; 0 = no Settings folder (environment, skills, agents, MCP servers, CLAUDE.md, settings.json)

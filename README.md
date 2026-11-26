@@ -1,4 +1,11 @@
-## ClaudeSessions 1.2 — Total Commander plugins for Claude Code sessions
+## ClaudeSessions 1.3 — Total Commander plugins for Claude Code sessions
+
+### What's new in 1.3
+- File system: the root shows the installed **Claude Code version** (`Claude Code 2.1.330 → 2.1.332` when a newer one exists). **Enter on it updates Claude Code** in a console window.
+- File system: a **Settings** folder: environment variables that matter to Claude Code (secrets masked), **skills** and **agents** named after their description, **MCP servers**, `CLAUDE.md`, `settings.json`, `keybindings.json`. F3/F4 work on the real files.
+- File system: every project has a **Memory** folder (the auto-memory files of that project).
+- File system: **Sessions trash — N** in the root (Enter goes to the real folder); weekly Opus/Sonnet limits and the plan in the limit details, when the subscription has them.
+- New icons for all of them.
 
 ### What's new in 1.2
 - File system: the root shows the **5-hour and weekly limits** of the Claude subscription under the two folders (`5-hour limit — 26%`, `Weekly limit — 32%`), with the reset time in the date column and own icons (a clock and a calendar). The same data as `/usage` in Claude Code; nothing to set up.
@@ -31,6 +38,22 @@ Available fields: Title, Started, LastActive, Messages (prompts), Project, Model
 - At most one request a minute, in the background; Ctrl+R in the root shows the newest numbers.
 - No login with a subscription (an API key has no such limits), an expired token (Claude Code not started for some hours) or no network: the entries keep the last values or are not shown. `Limits=0` in the `[fs]` section of the ini switches them off.
 
+**Claude Code version.** The root shows the installed version (read from `claude.exe` or the npm package, without starting it). Every 6 hours the plugin asks the npm registry for the newest version of your update channel (`latest` or `stable` from `settings.json`; no login, nothing about you is sent) and shows `Claude Code 2.1.330 → 2.1.332` when there is one. Enter shows the details and offers to update: a console window runs `update.cmd` next to a portable `claude.cmd` launcher if there is one, otherwise the official `claude update`. Installed with winget or another package manager, or a portable `claude.exe` with its own updater: set `UpdateCommand=` in the ini (`{claude}`, `{version}`, `{channel}`). Ctrl+R afterwards shows the new version.
+
+**Settings** (a folder in the root):
+- **Environment**: the variables that matter to Claude Code as `NAME = value`, from `settings.json` (`env`), the Windows variables of the user and the system, and the environment of Total Commander. API keys, tokens and passwords are masked (`sk-a…1234`). F3 shows a short description, every source and which one applies. Read-only.
+- **Skills** and **Agents**: `name — description.md`; F3 views, F4 edits the real `SKILL.md` / agent file, Enter opens it with its program, Alt+Enter goes to the real folder. The *Title* column shows the full description.
+- **MCP servers** (when there are any): user, local and project (`.mcp.json`) servers with type and command or URL; names of variables and headers only, never their values. Read-only.
+- `CLAUDE.md`, `settings.json`, `keybindings.json`: the real files (F3, F4).
+
+An edited file is written back only over an existing skill, agent, memory or settings file; nothing new is created there and sessions are never written.
+
+**Memory.** Every project folder has a **Memory** folder with the auto-memory files of that project (F3, F4 on the real files).
+
+**Sessions trash — N** appears in the root when F8 has moved sessions there; Enter or Alt+Enter goes to the real folder. Characters Windows does not allow in names (and dots, which Total Commander would take for an extension) are shown as look-alikes (`D∶∖Programs`, `2․1․330`).
+
+`Version=0`, `UpdateCheck=0`, `Settings=0` in the `[fs]` section of the ini switch these parts off.
+
 **Keys inside the file system**
 - **Enter** resumes the session: opens a terminal in the project folder and runs `claude --resume <session id>` (Windows Terminal if present, otherwise cmd). Configurable: terminal, launcher, or your own command line with `{cwd} {id} {claude}`; Enter can also be set to copy instead.
 - **Alt+Enter** opens a small menu: **Go to the project folder** (the active panel jumps to the real folder the session was started in), **Resume the session**, **Properties** (title, project, model, dates, prompts, file).
@@ -55,7 +78,7 @@ F3 on any `*.jsonl` shows the conversation in its own terminal-style window:
 Title, Started, LastActive, Messages (prompts), Project, Model, Id, Tokens, OutputTokens, CacheReadTokens for `*.jsonl` files in ordinary folders too (search, sort, columns, tooltips). The field names follow the language of Total Commander (English, Russian, Ukrainian).
 
 ### Install
-Download one of the installers (`ClaudeSessions-WFX/WLX/WDX-1.2.zip`), open it in Total Commander (Enter) and confirm, or take `ClaudeSessions-1.2.zip` with everything and register the files by hand. Lister detect string: `EXT="JSONL"`. Settings: `ClaudeSessions.ini` next to the DLL (see `ClaudeSessions.ini.example`).
+Download one of the installers (`ClaudeSessions-WFX/WLX/WDX-1.3.zip`), open it in Total Commander (Enter) and confirm, or take `ClaudeSessions-1.3.zip` with everything and register the files by hand. Lister detect string: `EXT="JSONL"`. Settings: `ClaudeSessions.ini` next to the DLL (see `ClaudeSessions.ini.example`).
 
 ### Notes
 - Sessions can contain private data (paths, command output, file contents); a Markdown export contains it too. Share exports with care.

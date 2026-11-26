@@ -1,4 +1,4 @@
-ClaudeSessions 1.2 - Total Commander plugins for Claude Code sessions (32 and 64 bit)
+ClaudeSessions 1.3 - Total Commander plugins for Claude Code sessions (32 and 64 bit)
 ====================================================================================
 
 Claude Code keeps every conversation as a *.jsonl file (folder "projects" in its
@@ -32,7 +32,19 @@ FILE SYSTEM (WFX)  "Claude sessions" in Network Neighborhood
     /usage in Claude Code: the plugin reads the Claude Code login token (.credentials.json in
     the data folder) and asks api.anthropic.com, at most once a minute. The token is only read,
     never refreshed, stored or sent anywhere else. No subscription login, an expired token or
-    no network: the entries are not shown (or keep the last values).
+    no network: the entries are not shown (or keep the last values). Weekly Opus/Sonnet limits
+    appear too when the subscription has them.
+  - "Claude Code 2.1.330" in the root: the installed version ("-> 2.1.332" when the npm registry
+    has a newer one in your update channel; checked every 6 hours, no login, nothing sent).
+    Enter shows the details and offers to update in a console window: update.cmd next to a
+    portable claude.cmd launcher if there is one, else "claude update" (UpdateCommand= to change).
+  - "Settings" folder: Environment (variables that matter to Claude Code from settings.json,
+    Windows and TC, secrets masked, read-only), Skills and Agents ("name - description.md",
+    F3/F4 on the real files), MCP servers (read-only, values of variables never shown),
+    CLAUDE.md, settings.json, keybindings.json.
+  - Every project has a "Memory" folder with its auto-memory files.
+  - "Sessions trash - N" in the root when F8 has moved sessions there; Enter goes to it.
+  - Characters Windows does not allow in names (and dots) are shown as look-alikes.
 
 LISTER (WLX)
   Shows the conversation in its own window, terminal style: colours per role, box-drawing
@@ -77,6 +89,10 @@ SETTINGS  (ClaudeSessions.ini next to the DLL, see ClaudeSessions.ini.example)
           ExportMd, MdResults  F5 copies sessions as .md; tool results in it (0/1/2)
           Trash        where F8 moves sessions (default: sessions-trash next to "projects")
           Limits       0 = do not show the 5-hour and weekly limits in the root
+          Version      0 = do not show the Claude Code version in the root
+          UpdateCheck  0 = do not ask the npm registry for a newer version
+          UpdateCommand  command for Enter on a newer version, placeholders {claude} {version} {channel}
+          Settings     0 = no Settings folder
 
 NOTES
   - Only system DLLs are used. Sessions can contain private data (paths, command output,
