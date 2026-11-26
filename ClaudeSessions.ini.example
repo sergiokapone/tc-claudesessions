@@ -12,8 +12,9 @@
 ; Path=D:\Programs\Claude\data\projects   ; default: found from CLAUDE_CONFIG_DIR, <Programs>\Claude, %USERPROFILE%\.claude
 ; Enter=resume              ; resume = claude --resume in a new terminal in the project folder; copy = let TC copy/open the file
 ; Terminal=wt               ; wt (Windows Terminal, else cmd) or cmd
-; Claude=                   ; path of the launcher; default: <claude folder>\claude.cmd next to "data", else "claude" from PATH
+; Claude=                   ; path of the launcher; default: <claude folder>\claude.cmd next to "data", else claude.exe/.cmd from PATH, %USERPROFILE%\.local\bin, %APPDATA%\npm
 ; ResumeCommand=            ; full custom command, placeholders {cwd} {id} {claude}, e.g.
 ;                           ; wt.exe -d "{cwd}" pwsh -NoExit -Command & '{claude}' --resume {id}
 ; ExportMd=0                ; 1 = F5 copies a session as .md instead of .jsonl
 ; MdResults=1               ; tool results in the .md: 0 none, 1 short, 2 longer
+; Trash=                    ; where F8 moves sessions (default: sessions-trash next to projects)
