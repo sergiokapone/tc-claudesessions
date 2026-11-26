@@ -1,4 +1,7 @@
-## ClaudeSessions 1.1 — Total Commander plugins for Claude Code sessions
+## ClaudeSessions 1.2 — Total Commander plugins for Claude Code sessions
+
+### What's new in 1.2
+- File system: the root shows the **5-hour and weekly limits** of the Claude subscription under the two folders (`5-hour limit — 26%`, `Weekly limit — 32%`), with the reset time in the date column and own icons (a clock and a calendar). The same data as `/usage` in Claude Code; nothing to set up.
 
 ### What's new in 1.1
 - File system: the root has two folders, **All sessions** (every session of every project in one list) and **Projects**; own icons for them, for the project folders and for the sessions.
@@ -22,6 +25,11 @@ A virtual folder in *Network Neighborhood* (the "Network" button of the drive ba
 ![All sessions with a custom column set; the Projects folder](https://raw.githubusercontent.com/sergiokapone/tc-claudesessions/main/screenshots/screenshot-fs-dark-en.png)
 
 Available fields: Title, Started, LastActive, Messages (prompts), Project, Model, Id, Tokens, OutputTokens, CacheReadTokens. Info is read quickly (head and tail of the file) and cached; the prompt and token counts need the whole file and are calculated in the background. To make a column set: *Configuration › Options › Custom columns › New*, then add fields from the `claudesessions` plugin. (Tip: with the *Ext* column hidden, Total Commander may show `..` in the first custom column; put a text column such as Model first.)
+
+**Limits.** Under the two folders the root shows how much of the Claude subscription's **5-hour** and **weekly** limit is used, for example `5-hour limit — 26%` and `Weekly limit — 32%`; the date column shows when the limit resets. Enter, Alt+Enter or F3 shows the details (percent, reset time, when the data was read). The names follow the language of Total Commander.
+- The numbers are the same as `/usage` in Claude Code and come from the same place: the plugin reads the Claude Code login token from `.credentials.json` in the Claude data folder and asks `api.anthropic.com` (the address Claude Code itself uses for `/usage`). The token is only read: it is never refreshed, stored or sent anywhere else.
+- At most one request a minute, in the background; Ctrl+R in the root shows the newest numbers.
+- No login with a subscription (an API key has no such limits), an expired token (Claude Code not started for some hours) or no network: the entries keep the last values or are not shown. `Limits=0` in the `[fs]` section of the ini switches them off.
 
 **Keys inside the file system**
 - **Enter** resumes the session: opens a terminal in the project folder and runs `claude --resume <session id>` (Windows Terminal if present, otherwise cmd). Configurable: terminal, launcher, or your own command line with `{cwd} {id} {claude}`; Enter can also be set to copy instead.
@@ -47,7 +55,7 @@ F3 on any `*.jsonl` shows the conversation in its own terminal-style window:
 Title, Started, LastActive, Messages (prompts), Project, Model, Id, Tokens, OutputTokens, CacheReadTokens for `*.jsonl` files in ordinary folders too (search, sort, columns, tooltips). The field names follow the language of Total Commander (English, Russian, Ukrainian).
 
 ### Install
-Download one of the installers (`ClaudeSessions-WFX/WLX/WDX-1.1.zip`), open it in Total Commander (Enter) and confirm, or take `ClaudeSessions-1.1.zip` with everything and register the files by hand. Lister detect string: `EXT="JSONL"`. Settings: `ClaudeSessions.ini` next to the DLL (see `ClaudeSessions.ini.example`).
+Download one of the installers (`ClaudeSessions-WFX/WLX/WDX-1.2.zip`), open it in Total Commander (Enter) and confirm, or take `ClaudeSessions-1.2.zip` with everything and register the files by hand. Lister detect string: `EXT="JSONL"`. Settings: `ClaudeSessions.ini` next to the DLL (see `ClaudeSessions.ini.example`).
 
 ### Notes
 - Sessions can contain private data (paths, command output, file contents); a Markdown export contains it too. Share exports with care.

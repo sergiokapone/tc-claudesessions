@@ -1,4 +1,4 @@
-ClaudeSessions 1.1 - Total Commander plugins for Claude Code sessions (32 and 64 bit)
+ClaudeSessions 1.2 - Total Commander plugins for Claude Code sessions (32 and 64 bit)
 ====================================================================================
 
 Claude Code keeps every conversation as a *.jsonl file (folder "projects" in its
@@ -27,6 +27,12 @@ FILE SYSTEM (WFX)  "Claude sessions" in Network Neighborhood
   - F8 moves a session (after Total Commander's confirmation) to <claude data>\sessions-trash\
     <project>\, from where it can be moved back; nothing is deleted for good. Sessions are
     never renamed or moved otherwise.
+  - Under the two folders: the 5-hour and weekly limits of the Claude subscription, e.g.
+    "5-hour limit - 26%" (reset time in the date column; Enter/F3 = details). The same data as
+    /usage in Claude Code: the plugin reads the Claude Code login token (.credentials.json in
+    the data folder) and asks api.anthropic.com, at most once a minute. The token is only read,
+    never refreshed, stored or sent anywhere else. No subscription login, an expired token or
+    no network: the entries are not shown (or keep the last values).
 
 LISTER (WLX)
   Shows the conversation in its own window, terminal style: colours per role, box-drawing
@@ -70,6 +76,7 @@ SETTINGS  (ClaudeSessions.ini next to the DLL, see ClaudeSessions.ini.example)
           ResumeCommand  your own command line, placeholders {cwd} {id} {claude}
           ExportMd, MdResults  F5 copies sessions as .md; tool results in it (0/1/2)
           Trash        where F8 moves sessions (default: sessions-trash next to "projects")
+          Limits       0 = do not show the 5-hour and weekly limits in the root
 
 NOTES
   - Only system DLLs are used. Sessions can contain private data (paths, command output,

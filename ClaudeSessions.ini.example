@@ -18,3 +18,4 @@
 ; ExportMd=0                ; 1 = F5 copies a session as .md instead of .jsonl
 ; MdResults=1               ; tool results in the .md: 0 none, 1 short, 2 longer
 ; Trash=                    ; where F8 moves sessions (default: sessions-trash next to projects)
+; Limits=1                  ; 0 = do not show the 5-hour and weekly limits in the root (read with the Claude Code login, like /usage)
