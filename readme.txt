@@ -1,4 +1,4 @@
-ClaudeSessions 1.3 - Total Commander plugins for Claude Code sessions (32 and 64 bit)
+ClaudeSessions 1.4 - Total Commander plugins for Claude Code sessions (32 and 64 bit)
 ====================================================================================
 
 Claude Code keeps every conversation as a *.jsonl file (folder "projects" in its
@@ -43,7 +43,14 @@ FILE SYSTEM (WFX)  "Claude sessions" in Network Neighborhood
     F3/F4 on the real files), MCP servers (read-only, values of variables never shown),
     CLAUDE.md, settings.json, keybindings.json.
   - Every project has a "Memory" folder with its auto-memory files.
-  - "Sessions trash - N" in the root when F8 has moved sessions there; Enter goes to it.
+  - "Sessions trash - N" in the root when F8 has moved sessions there; Enter goes to it, F3 shows
+    the sessions in it per project.
+  - F3 on a folder is not possible in a file system plugin, so the folders have an "Overview"
+    entry instead: All sessions (totals, activity of the last 14 days, models, tokens, biggest
+    sessions), Projects (every project, size, last activity, projects whose folder is gone), a
+    project (its folder, statistics, newest sessions, memory, Claude files in the folder),
+    Settings (what settings.json sets, numbers of skills, agents, MCP servers), Skills and
+    Agents (full descriptions), Memory (descriptions and MEMORY.md).
   - Characters Windows does not allow in names (and dots) are shown as look-alikes.
 
 LISTER (WLX)
@@ -70,7 +77,10 @@ INSTALL
   Open one of the ClaudeSessions-*.zip installers in Total Commander (Enter) and confirm.
   Or copy the files and add them by hand:
     Lister:       Configuration > Options > Plugins > Lister plugins (WLX) > Add
-                  detect string:  EXT="JSONL"
+                  detect string:  EXT="JSONL" | ([0]=239 & [1]=187 & [2]=191)
+                  (the UTF-8 BOM part lets it show the file system's texts too - overviews,
+                  version, trash, limits - so Quick View moving on to a session stays here)
+                  An entry from version 1.3 or older keeps its old detect string: change it there.
     File system:  Configuration > Options > Plugins > File system plugins (WFX) > Add
     Content:      Configuration > Options > Plugins > Content plugins (WDX) > Add
   Open the file system from Network Neighborhood (the "Network" button of the drive bar)
@@ -93,6 +103,7 @@ SETTINGS  (ClaudeSessions.ini next to the DLL, see ClaudeSessions.ini.example)
           UpdateCheck  0 = do not ask the npm registry for a newer version
           UpdateCommand  command for Enter on a newer version, placeholders {claude} {version} {channel}
           Settings     0 = no Settings folder
+          Overview     0 = no "Overview" entry in the folders
 
 NOTES
   - Only system DLLs are used. Sessions can contain private data (paths, command output,

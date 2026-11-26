@@ -1,4 +1,11 @@
-## ClaudeSessions 1.3 — Total Commander plugins for Claude Code sessions
+## ClaudeSessions 1.4 — Total Commander plugins for Claude Code sessions
+
+### What's new in 1.4
+- File system: every folder has an **ⓘ Overview** entry (Total Commander cannot show a folder of a file system plugin with F3): All sessions, Projects, a project, Settings, Skills, Agents, Memory. F3 or Enter opens it in Lister.
+- File system: F3 on **Sessions trash** lists the sessions in it per project.
+- Lister: the texts of the file system (overviews, version, trash, limits) open in ClaudeSessions too, so Quick View moving on to a session no longer ends up in another text viewer. New Lister detect string: `EXT="JSONL" | ([0]=239 & [1]=187 & [2]=191)` (an entry from an earlier version keeps the old one: change it under Configuration › Options › Plugins › Lister, or remove the plugin there and install the zip again).
+- File system: a path opened with a trailing `\` (`\\\Claude sessions\...\`) works again for skills and settings files.
+- `Log=1` in the `[fs]` section writes what Total Commander asks the plugin for into `ClaudeSessions.log` (for bug reports).
 
 ### What's new in 1.3
 - File system: the root shows the installed **Claude Code version** (`Claude Code 2.1.330 → 2.1.332` when a newer one exists). **Enter on it updates Claude Code** in a console window.
@@ -52,7 +59,14 @@ An edited file is written back only over an existing skill, agent, memory or set
 
 **Sessions trash — N** appears in the root when F8 has moved sessions there; Enter or Alt+Enter goes to the real folder. Characters Windows does not allow in names (and dots, which Total Commander would take for an extension) are shown as look-alikes (`D∶∖Programs`, `2․1․330`).
 
-`Version=0`, `UpdateCheck=0`, `Settings=0` in the `[fs]` section of the ini switch these parts off.
+**Overview.** Total Commander does not ask a file system plugin to show a folder with F3, so every folder has an **ⓘ Overview** entry: F3 or Enter sums the folder up in Lister.
+- **All sessions**: number and size of the sessions, the first and the last one, active ones in the last 7 and 30 days, activity of the last 14 days as a bar chart, models, tokens (of the sessions already counted by the token columns), the biggest sessions.
+- **Projects**: every project with its sessions, size, last activity, memory and `CLAUDE.md`; projects whose folder no longer exists (resume will not work there).
+- **A project**: its folder, the same statistics, the newest sessions, its memory files, Claude files in the project folder (`CLAUDE.md`, `.mcp.json`, `.claude\settings.json`, ...).
+- **Settings**: what `settings.json` and `settings.local.json` set (model, update channel, permission rules, hooks, plugins, status line, env), numbers of skills, agents, MCP servers and variables.
+- **Skills**, **Agents**: every one with its full description. **Memory**: the memory files with their descriptions and `MEMORY.md`.
+
+`Version=0`, `UpdateCheck=0`, `Settings=0`, `Overview=0` in the `[fs]` section of the ini switch these parts off.
 
 **Keys inside the file system**
 - **Enter** resumes the session: opens a terminal in the project folder and runs `claude --resume <session id>` (Windows Terminal if present, otherwise cmd). Configurable: terminal, launcher, or your own command line with `{cwd} {id} {claude}`; Enter can also be set to copy instead.
@@ -78,7 +92,7 @@ F3 on any `*.jsonl` shows the conversation in its own terminal-style window:
 Title, Started, LastActive, Messages (prompts), Project, Model, Id, Tokens, OutputTokens, CacheReadTokens for `*.jsonl` files in ordinary folders too (search, sort, columns, tooltips). The field names follow the language of Total Commander (English, Russian, Ukrainian).
 
 ### Install
-Download one of the installers (`ClaudeSessions-WFX/WLX/WDX-1.3.zip`), open it in Total Commander (Enter) and confirm, or take `ClaudeSessions-1.3.zip` with everything and register the files by hand. Lister detect string: `EXT="JSONL"`. Settings: `ClaudeSessions.ini` next to the DLL (see `ClaudeSessions.ini.example`).
+Download one of the installers (`ClaudeSessions-WFX/WLX/WDX-1.4.zip`), open it in Total Commander (Enter) and confirm, or take `ClaudeSessions-1.4.zip` with everything and register the files by hand. Lister detect string: `EXT="JSONL" | ([0]=239 & [1]=187 & [2]=191)` (the UTF-8 BOM part is for the texts of the file system: overviews, version, trash, limits; the plugin takes only its own, so Quick View moving on to a session stays in this plugin). Settings: `ClaudeSessions.ini` next to the DLL (see `ClaudeSessions.ini.example`).
 
 ### Notes
 - Sessions can contain private data (paths, command output, file contents); a Markdown export contains it too. Share exports with care.
