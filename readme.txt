@@ -1,4 +1,4 @@
-ClaudeSessions 1.4 - Total Commander plugins for Claude Code sessions (32 and 64 bit)
+ClaudeSessions 1.5 - Total Commander plugins for Claude Code sessions (32 and 64 bit)
 ====================================================================================
 
 Claude Code keeps every conversation as a *.jsonl file (folder "projects" in its
